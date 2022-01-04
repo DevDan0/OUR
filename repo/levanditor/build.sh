@@ -17,7 +17,7 @@ package() {
 	sh ./installer.sh
 }
 
-remove() {
+uninstall() {
    cd $pkgname-$pkgver/Editor
    sh ./uninstall.sh
 }
