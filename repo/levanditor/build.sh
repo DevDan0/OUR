@@ -23,7 +23,8 @@ uninstall() {
 }
 
 LICENSE() {
-  echo "LICENSE: N/A"
+  cd $pkgname-$pkgver
+  cat $LICENSE
 }
 
 
