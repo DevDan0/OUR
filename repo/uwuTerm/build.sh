@@ -1,27 +1,29 @@
-pkgname=uwuterm
-pkgver=main
+pkgname=uwuTerm
+pkgver=28_11_21
 LICENSE=LICENSE
 
 fetch() {
-	git clone https://github.com/breadtard/uwuTools --depth 1 --jobs 5
+	wget http://nic.orangeos.xyz:8906/uwuTools/uwuTerm/$pkgname-$pkgver.tar.xz
+	tar xvf $pkgname-$pkgver.tar.xz
 }
 
 build() {
-	cd uwuTools
-	cd uwuTerm
+	cd $pkgname
 	meson build
 	cd build
 	meson compile
 }
 
 package() {
-	cd uwuTools
-	cd uwuTerm
+	cd $pkgname
 	install -Dm755 build/uwuterm /usr/bin/
 }
 
 license() {
-        cd uwuTools
-	cd uwuTerm
-        cat $LICENSE
+	cd $pkgname
+    cat $LICENSE
+}
+
+uninstall() {
+	rm /usr/bin/uwuterm
 }
