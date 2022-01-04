@@ -1,6 +1,6 @@
 pkgname=editor
 pkgver=master
-LICENSE = LICENSE
+LICENSE=LICENSE
 
 fetch() {
 	git clone https://github.com/DevDan0/Levanditor --depth 1 --jobs 5
