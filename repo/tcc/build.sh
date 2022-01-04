@@ -19,6 +19,7 @@ package() {
   make install
 }
 
+
 licence() {
   cd $pkgname-$pkgver
   cat $LICENCE
