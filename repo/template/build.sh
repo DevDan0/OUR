@@ -3,14 +3,14 @@ pkgver= # Fill with the version of the package (If GitHub's zip file, usually ma
 LICENSE= # The License file inside the source code
 
 fetch() {
-	# For a .zip file you want to use the following command (And put link to the file between "" `curl -L "" -o $pkgname-$pkgver.zip`
+	# Do not use Git or .zip files for fetching!
+	# The source needs to be able to be extracted with tar to keep dependencies as low as possible.
 	# For a .tar.xz file you want to use the following command (And put link to the file between "" `curl -L "" -o $pkgname-$pkgver.tar.xz`
 	# For a .tar.gz file you want to use the following command (And put link to the file between "" `curl -L "" -o $pkgname-$pkgver.tar.gz`
 	# For a .tar.bz2 file you want to use the following command (And put link to the file between "" `curl -L "" -o $pkgname-$pkgver.tar.bz2`
 
 	# After the source is downloaded, you want to extract it.
 	# If you have a some sort of tar package use `tar -xf $pkgname-$pkgver.tar.##´ (replace ## with correct extension) 
-	# If you have a zip package use `unzip $pkgname-$pkgver.zip`
 }
 
 build() {
@@ -33,7 +33,7 @@ uninstall() {
 }
 license() {
 	# Only changes that you possibly need to do but not neccesarily is that you change the folder to the one that is the equivilent of the
-	# zip's or tar's folder.
+	# tar's folder. You must provide a LICENSE file.
         cd $pkgname-$pkgver
         cat $LICENSE
 }
