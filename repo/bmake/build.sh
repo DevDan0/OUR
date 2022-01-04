@@ -22,14 +22,13 @@ build() {
 
 package() {
 	cd $pkgname-$pkgver
-	./bmake -m ./mk install DESTDIR=$pkgdir
-	ln -sr $pkgdir/usr/bin/bmake $pkgdir/usr/bin/make
-	rm -r $pkgdir/usr/share/man
+	./bmake -m ./mk install
+	ln -sr /usr/bin/bmake /usr/bin/make
 }
 
 package_doc() {
 	cd $pkgname-$pkgver
-	install -Dm644 ./bmake.1 $pkgdir/usr/share/man/man1/bmake.1
+	install -Dm644 ./bmake.1 /usr/share/man/man1/bmake.1
 }
 
 license() {

@@ -1,11 +1,10 @@
 pkgname=uwuEdit
-pkgver=master
+pkgver=31_08_21
 LICENSE=LICENSE
 
 fetch() {
-	git clone https://github.com/breadtard/uwuTools --depth 1 --jobs 5
-	cp -r uwuTools/$pkgname ./
-	rm -rf uwuTools
+	wget http://nic.orangeos.xyz:8906/uwuTools/uwuEdit/$pkgname-$pkgver.tar.xz
+	tar xvf $pkgname-$pkgver.tar.xz
 }
 
 build() {
@@ -21,4 +20,14 @@ package() {
 license() {
 	cd $pkgname
 	cat $LICENSE
+}
+
+uninstall() {
+	# why did i do symlinks
+	if [[ -L /bin ]]; then
+		rm /bin/uwuEdit
+	else
+		rm /usr/bin/uwuEdit
+		rm /bin/uwuEdit
+	fi
 }

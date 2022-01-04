@@ -1,11 +1,10 @@
 pkgname=uwuPlay
-pkgver=master
+pkgver=04_09_21
 LICENSE=LICENSE
 
 fetch() {
-    git clone https://github.com/breadtard/uwuTools --depth 1 --jobs 5
-    cp -r uwuTools/$pkgname ./
-    rm -rf uwuTools
+    wget http://nic.orangeos.xyz:8906/uwuTools/uwuPlay/$pkgname-$pkgver.tar.xz
+    tar xvf $pkgname-$pkgver.tar.xz
 }
 
 build() {
@@ -21,4 +20,8 @@ package() {
 license() {
     cd $pkgname
     cat $LICENSE
+}
+
+uninstall() {
+    rm /usr/bin/uwuplay
 }
