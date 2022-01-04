@@ -25,6 +25,12 @@ package() {
         # of the package you're making.
 }
 
+remove() {
+	# This part is different with every package. This is where you have remove instructions to delete the package.
+	# This will heavily differ between packages with some using `make uninstall` and multiple different build systems. You will likely have to 
+	# lookup what the uninstall commands are for the build system being used (make, meson, etc.) and on some more obscure packages you will need to 
+	# manually `rm -rf` the file paths
+}
 license() {
 	# Only changes that you possibly need to do but not neccesarily is that you change the folder to the one that is the equivilent of the
 	# zip's or tar's folder.
