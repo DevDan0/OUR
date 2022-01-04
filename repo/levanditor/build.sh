@@ -3,8 +3,8 @@ pkgver=master
 LICENSE=LICENSE
 
 fetch() {
-	git clone https://github.com/DevDan0/Levanditor --depth 1 --jobs 5 "$pkgname-$pkgver"
-	
+	curl -L https://github.com/DevDan0/Levanditor/archive/refs/tags/Release.tar.gz -o $pkgname-$pkgver.tar.gz
+	tar -xvf $pkgname-$pkgver.tar.gz
 }
 
 build() {
@@ -18,12 +18,13 @@ package() {
 }
 
 uninstall() {
-   cd $pkgname-$pkgver/Editor
-   sh ./uninstall.sh
+  cd $pkgname-$pkgver/Editor
+  sh ./uninstall.sh
 }
 
 LICENSE() {
-  echo "LICENSE: N/A"
+  cd $pkgname-$pkgver
+  cat $LICENSE
 }
 
 
