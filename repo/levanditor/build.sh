@@ -1,4 +1,4 @@
-pkgname=levanditor
+pkgname=editor
 pkgver=master
 LICENSE = LICENSE
 
