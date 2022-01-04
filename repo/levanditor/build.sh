@@ -15,12 +15,12 @@ build() {
 
 package() {
 	cd $pkgname
-	./installer.sh
+	sh installer.sh
 }
 
 remove() {
    cd $pkgname-$pkgver
-  ./uninstall.sh
+   sh uninstall.sh
 }
 
 LICENSE() {
