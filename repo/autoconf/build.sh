@@ -1,28 +1,32 @@
 pkgname=autoconf
-pkgver=2.52
+pkgver=2.13
 LICENSE=COPYING
 
 fetch() {
-	curl -L https://ftp.gnu.org/gnu/autoconf/autoconf-2.52.tar.bz2 -o $pkgname-$pkgver.tar.bz2
-	tar -xf $pkgname-$pkgver.tar.bz2
+    curl "https://ftp.gnu.org/gnu/autoconf/autoconf-$pkgver.tar.gz" -o $pkgname-$pkgver.tar.gz
+    tar -xf $pkgname-$pkgver.tar.gz
+    cd $pkgname-$pkgver
+    patch -p1 < ../../makefile-m4f.patch
+    patch -p1 < ../../autoconf.sh.patch
+    patch -p1 < ../../autoheader.sh.patch
 }
 
 build() {
-        cd $pkgname-$pkgver
-	./configure
-	make clean
+    cd $pkgname-$pkgver
+    ./configure \
+        --prefix=/usr \
+        --build=$TRIPLE \
+        --host=$TRIPLE
+
+    make
 }
 
 package() {
-        cd $pkgname-$pkgver
-	make clean install
+    cd $pkgname-$pkgver
+    make install DESTDIR=$pkgdir
 }
 
-uninstall() {
-        cd $pkgname-$pkgver
-	make uninstall
-}
 license() {
-        cd $pkgname-$pkgver
-        cat $LICENSE
+    cd $pkgname-$pkgver
+    cat $LICENSE
 }
