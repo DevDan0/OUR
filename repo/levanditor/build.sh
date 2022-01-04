@@ -19,6 +19,7 @@ package() {
 }
 
 remove() {
+   cd $pkgname-$pkgver
   ./uninstall.sh
 }
 
