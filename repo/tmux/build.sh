@@ -23,8 +23,6 @@ uninstall() {
 	make uninstall
 }
 license() {
-	# Only changes that you possibly need to do but not neccesarily is that you change the folder to the one that is the equivilent of the
-	# tar's folder. You must provide a LICENSE file.
         cd $pkgname-$pkgver
         cat $LICENSE
 }

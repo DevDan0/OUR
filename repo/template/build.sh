@@ -25,7 +25,7 @@ package() {
         # of the package you're making.
 }
 
-uninstall() {
+remove() {
 	# This part is different with every package. This is where you have remove instructions to delete the package.
 	# This will heavily differ between packages with some using `make uninstall` and multiple different build systems. You will likely have to 
 	# lookup what the uninstall commands are for the build system being used (make, meson, etc.) and on some more obscure packages you will need to 

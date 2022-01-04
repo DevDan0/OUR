@@ -23,7 +23,12 @@ build() {
 
 package() {
     cd $pkgname-$pkgver
-    make install DESTDIR=$pkgdir
+    make install
+}
+
+remove() {
+    cd $pkgname-$pkgver
+    make uninstall
 }
 
 license() {

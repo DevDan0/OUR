@@ -21,10 +21,11 @@ package() {
 	make install.fns
 }
 
-uninstall() {
+remove() {
         cd $pkgname-$pkgver
 	make uninstall
 }
+
 license() {
         cd $pkgname-$pkgver
         cat $LICENSE

@@ -18,7 +18,7 @@ package() {
 	make clean install
 }
 
-uninstall() {
+remove() {
 	make uninstall
 }
 
