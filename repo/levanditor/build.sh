@@ -1,4 +1,4 @@
-pkgname=editor
+pkgname=levditor
 pkgver=master
 LICENSE=LICENSE
 
