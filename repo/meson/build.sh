@@ -20,7 +20,7 @@ build() {
 
 package() {
 	cd $pkgname-$pkgver
-	python setup.py install --prefix=/usr --root=$pkgdir
+	python setup.py install --prefix=/usr
 }
 
 package_doc() {
@@ -29,5 +29,5 @@ package_doc() {
 
 license() {
 	cd $pkgname-$pkgver
-	cat LICENSE
+	cat $LICENSE
 }
