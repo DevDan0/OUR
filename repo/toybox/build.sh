@@ -1,39 +1,36 @@
-pkgver=0.8.5
+pkgver=0.8.6
 pkgname=toybox
-pkgrel=1
-deps="musl:pci-ids"
 LICENSE=LICENSE
 
 fetch() {
 	curl "http://www.landley.net/toybox/downloads/$pkgname-$pkgver.tar.gz" -o $pkgname-$pkgver.tar.gz
 	tar -xf $pkgname-$pkgver.tar.gz
+	curl "https://pci-ids.ucw.cz/v2.2/pci.ids" -o pci.ids
+	cd $pkgname-$pkgver
+	patch -p1 < ../../ls-colour.patch
+	patch -p1 < ../../mksh-make.patch
+	patch -p1 < ../../xxd-i.patch
 }
 
 build() {
 	cd $pkgname-$pkgver
 	CPUS=1 make defconfig
-	cp ../../.config ./
-	CPUS=1 make
+	CPUS=1 make 
+}
+
+backup() {
+	return
 }
 
 package() {
+	install -d $pkgdir/usr/share/misc
+	install -Dm 644 pci.ids $pkgdir/usr/share/misc
+
 	cd $pkgname-$pkgver
 	install -d /bin
 	install -Dm755 ./toybox /bin/
-	ln -sr /bin/toybox /bin/ln
-	ln -sr /bin/toybox /bin/uname
-	ln -sr /bin/toybox /usr/bin/install
 	install -d /usr/bin
-	ln -sr /bin/toybox /usr/bin/lspci
 	make install
-
-	# Provided by NetBSD Curses
-#	rm $pkgdir/usr/bin/clear
-#	rm $pkgdir/usr/bin/reset
-
-	# LLVM Provides this
-#	rm $pkgdir/usr/bin/readelf
-#	rm $pkgdir/usr/bin/tar
 }
 
 license() {
