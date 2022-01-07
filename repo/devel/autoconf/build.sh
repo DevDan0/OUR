@@ -1,0 +1,37 @@
+pkgname=autoconf
+pkgver=2.13
+LICENSE=COPYING
+
+fetch() {
+    curl "https://ftp.gnu.org/gnu/autoconf/autoconf-$pkgver.tar.gz" -o $pkgname-$pkgver.tar.gz
+    tar -xf $pkgname-$pkgver.tar.gz
+    cd $pkgname-$pkgver
+    patch -p1 < ../../makefile-m4f.patch
+    patch -p1 < ../../autoconf.sh.patch
+    patch -p1 < ../../autoheader.sh.patch
+}
+
+build() {
+    cd $pkgname-$pkgver
+    ./configure \
+        --prefix=/usr \
+        --build=$TRIPLE \
+        --host=$TRIPLE
+
+    make
+}
+
+package() {
+    cd $pkgname-$pkgver
+    make install
+}
+
+remove() {
+    cd $pkgname-$pkgver
+    make uninstall
+}
+
+license() {
+    cd $pkgname-$pkgver
+    cat $LICENSE
+}
