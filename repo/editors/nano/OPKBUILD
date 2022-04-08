@@ -1,0 +1,28 @@
+pkgname=nano
+pkgver=12_06_21
+LICENSE=LICENSE
+
+fetch() {
+	curl -L "http://de.nic.orangeos.xyz:8906/editors/$pkgname/$pkgname-$pkgver.tar.xz" -o $pkgname-$pkgver.tar.xz
+	curl -L "http://de.nic.orangeos.xyz:8906/editors/$pkgname/$pkgname-$pkgver.tar.xz.sha512" -o $pkgname-$pkgver.tar.xz.sha512
+  tar -xf $pkgname-$pkgver.tar.xz
+}
+
+build() {
+  cd $pkgname
+	./autogen.sh
+	./configure --prefix=/usr
+	echo hi >> /home/spagett/hi
+	make 
+}
+
+package() {
+  cd $pkgname
+	make install DESTDIR="$outdir"
+
+}
+
+license() {
+ cd $pkgname
+ cat $LICENSE
+}
