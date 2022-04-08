@@ -12,7 +12,6 @@ build() {
   cd $pkgname
 	./autogen.sh
 	./configure --prefix=/usr
-	echo hi >> /home/spagett/hi
 	make 
 }
 
