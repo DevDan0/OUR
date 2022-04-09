@@ -3,8 +3,8 @@ pkgver=12_06_21
 LICENSE=LICENSE
 
 fetch() {
-	curl -L "http://de.nic.orangeos.xyz:8906/editors/$pkgname/$pkgname-$pkgver.tar.xz" -o $pkgname-$pkgver.tar.xz
-	curl -L "http://de.nic.orangeos.xyz:8906/editors/$pkgname/$pkgname-$pkgver.tar.xz.sha512" -o $pkgname-$pkgver.tar.xz.sha512
+	curl -L "$MIRROR/editors/$pkgname/$pkgname-$pkgver.tar.xz" -o $pkgname-$pkgver.tar.xz
+	curl -L "$MIRROR/editors/$pkgname/$pkgname-$pkgver.tar.xz.sha512" -o $pkgname-$pkgver.tar.xz.sha512
   tar -xf $pkgname-$pkgver.tar.xz
 }
 
