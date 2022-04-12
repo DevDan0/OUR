@@ -1,4 +1,0 @@
-pkgname=libffi
-pkgver=3.4.2
-deps=
-LICENSE=LICENSE-BUILDTOOLS LICENSE
