@@ -1,0 +1,38 @@
+pkgname=example1 # Fill with the name of the package
+pkgver=1.5.1 # Fill with the version of the package 
+deps="" # Put dependencies into the quotes seperated by spaces
+LICENSE="LICENSE" # The License file inside the source code, if there are multiple licenses then seperate them with a single whitespace 
+
+fetch() {
+  # Download the files.
+  # The standard way to do this is with curl, also download the sha512 sum.
+  # When downloading files from the official orangeOs nic's please use $MIRROR/<repo>/$pkgname/$pkgname-$pkgver.tar.xz as the url.
+  # The officially recommended way is to use tar.<some compression type> if its not available as a tar make an issue on the OUR git page.
+  # For example:
+  curl -L "$MIRROR/editors/$pkgname/$pkgname-$pkgver.tar.xz" -o $pkgname-$pkgver.tar.xz
+  curl -L "$MIRROR/editors/$pkgname/$pkgname-$pkgver.tar.xz.sha512" -o $pkgname-$pkgver.tar.xz.sha512 
+  # Also extract the file using tar.
+  tar -xf $pkgname-$pkgver.tar.xz
+}
+
+build() {
+  # This part is different with every package. This is where you compile the package.
+  # It should start with cd'ing into the directory of the package (this will be $pkgname-$pkgver 99% of the time)
+  # cd $pkgname-$pkgver
+  # This part depends on the program, but lets just use make for this example, OrangeOs uses /usr as the default prefix so specify that if needed.
+  ./configure --prefix=/usr
+  # Now make the program.
+  make
+}
+
+package() {
+  # This is where we package up the file, like the previous step start by cd'ing into the package directory.
+  # Opk provides the environment variable $outdir, this should act as the root of the filesystem.
+  # Say you where manually moving a file to /usr/bin/example.
+  # The process would look like this:
+  mkdir -p $outdir/usr/bin/
+  mv ./example $outdir/usr/bin/example
+  # Note that most make systems support this so for example with make you can use the DESTDIR variable.
+  make install DESTDIR=$outdir
+  # That will handle everything for you and automatically make the directories and put everything where its meant to be.
+} 
