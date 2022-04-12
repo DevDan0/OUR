@@ -1,0 +1,25 @@
+pkgname=libffi
+pkgver=3.4.2
+LICENSE="LICENSE-BUILDTOOLS LICENSE"
+
+fetch() {
+        curl -l "$MIRROR/devel/$pkgname/$pkgname-$pkgver.tar.xz" -o $pkgname-$pkgver.tar.xz
+        curl -l "$MIRROR/devel/$pkgname/$pkgname-$pkgver.tar.xz.sha512" -o $pkgname-$pkgver.tar.xz.sha512
+        tar -xf $pkgname-$pkgver.tar.xz
+}
+
+build() {
+        cd $pkgname-$pkgver
+        ./configure --prefix=/usr
+        make
+}
+
+package() {
+        cd $pkgname-$pkgver
+        make install DESTDIR=$outdir
+}
+
+license() {
+        cd $pkgname-$pkgver
+        cat $LICENSE
+}
