@@ -1,3 +1,4 @@
 *.DS_Store
 /repo/*/*/out
 /repo/*/*/src
+*.xcodeproj

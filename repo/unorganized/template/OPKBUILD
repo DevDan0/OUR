@@ -6,7 +6,7 @@ LICENSE="LICENSE" # The License file inside the source code, if there are multip
 fetch() {
   # Download the files.
   # The standard way to do this is with curl, also download the sha512 sum.
-  # When downloading files from the official orangeOs nic's please use $MIRROR/<repo>/$pkgname/$pkgname-$pkgver.tar.xz as the url.
+  # When downloading files from the official OrangeOS Nicks, please use $MIRROR/<repo>/$pkgname/$pkgname-$pkgver.tar.xz as the url.
   # The officially recommended way is to use tar.<some compression type> if its not available as a tar make an issue on the OUR git page.
   # For example:
   curl -L "$MIRROR/editors/$pkgname/$pkgname-$pkgver.tar.xz" -o $pkgname-$pkgver.tar.xz
@@ -19,7 +19,7 @@ build() {
   # This part is different with every package. This is where you compile the package.
   # It should start with cd'ing into the directory of the package (this will be $pkgname-$pkgver 99% of the time)
   # cd $pkgname-$pkgver
-  # This part depends on the program, but lets just use make for this example, OrangeOs uses /usr as the default prefix so specify that if needed.
+  # This part depends on the program, but lets just use make for this example. OrangeOS uses /usr as the default prefix, so specify that if needed.
   ./configure --prefix=/usr
   # Now make the program.
   make
@@ -27,7 +27,7 @@ build() {
 
 package() {
   # This is where we package up the file, like the previous step start by cd'ing into the package directory.
-  # Opk provides the environment variable $outdir, this should act as the root of the filesystem.
+  # OPK provides the environment variable $outdir, this should act as the root of the filesystem.
   # Say you where manually moving a file to /usr/bin/example.
   # The process would look like this:
   mkdir -p $outdir/usr/bin/
